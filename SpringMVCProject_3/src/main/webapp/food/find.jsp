@@ -16,6 +16,17 @@ p{
 </style>
 	<div class="container">
 		<div class="row">
+			<form method="post" action="../food/find.do">
+				<select name="column" class="input-sm">
+					<option value="address" ${column=='address'?'selected':'' }>주소</option>
+					<option value="type" ${column=='type'?'selected':'' }>종류</option>
+					<option value="name" ${column=='name'?'selected':'' }>업체명</option>
+				</select>
+				<input type="text" name="fd" class="input-sm" size="20" value="${fd }" required>
+				<input type="submit" value="검색" class="btn btn-sm btn-primary">
+			</form>
+		</div>
+		<div class="row" style="margin-top: 10px">
 		<c:forEach var="vo" items="${list }">
 			<div class="col-md-3">
 				<div class="thumbnail">
@@ -32,13 +43,13 @@ p{
 		<div class="row text-center" style="margin-top: 10px">
 			<ul class="pagination">
 				<c:if test="${startPage>1 }">
-					<li><a href="../main/main.do?page=${startPage-1 }">&laquo;</a></li>
+					<li><a href="../food/find.do?page=${startPage-1 }&column=${column}&fd=${fd}">&laquo;</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-					<li ${i==curpage?"class=active":"" }><a href="../main/main.do?page=${i }">${i }</a></li>
+					<li ${i==curpage?"class=active":"" }><a href="../food/find.do?page=${i }&column=${column}&fd=${fd}">${i }</a></li>
 				</c:forEach>
 				<c:if test="${endPage<totalpage }">
-					<li><a href="../main/main.do?page=${endPage+1 }">&raquo;</a></li>
+					<li><a href="../food/find.do?page=${endPage+1 }&column=${column}&fd=${fd}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>

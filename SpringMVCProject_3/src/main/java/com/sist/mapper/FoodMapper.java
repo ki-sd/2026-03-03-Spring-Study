@@ -14,6 +14,11 @@ public interface FoodMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM food")
 	public int foodTotalPage();
 	
+	@Select("SELECT * "
+			+ "FROM food "
+			+ "WHERE no=#{no}")
+	public FoodVO foodDetailData(int no);
+	
 	// <select id="foodFindListData" resultType="FoodVO" parameterType="hashmap">
 	public List<FoodVO> foodFindListData(Map map);
 	// <select id="findTotalPage" resultType="int" parameterType="hashmap">

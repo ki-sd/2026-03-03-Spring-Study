@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.service.FoodService;
@@ -26,6 +27,35 @@ public class FoodRestController {
 		int startPage=((page-1)/BLOCK*BLOCK)+1;
 		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
 		if(endPage>totalpage) endPage=totalpage;
+		map.put("list", list);
+		map.put("curpage", page);
+		map.put("totalpage", totalpage);
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		return map;
+	}
+	@GetMapping("food/detail_vue.do")
+	public FoodVO food_detail_vue(int no) {
+		FoodVO vo=service.foodDetailData(no);
+		return vo;
+	}
+	@RequestMapping("food/find_vue.do")
+	public Map<String,Object> food_find_vue(int page,String column,String fd){
+		int curpage=page;
+		int start=(curpage*12)-12;
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("column", column);
+		map.put("fd", fd);
+		List<FoodVO> list=service.foodFindListData(map);
+		int totalpage=service.findTotalPage(map);
+		
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage) endPage=totalpage;
+		
+		map=new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("curpage", page);
 		map.put("totalpage", totalpage);

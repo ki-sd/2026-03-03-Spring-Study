@@ -33,4 +33,9 @@ public class FoodServiceImpl implements FoodService {
 		return mapper.findTotalPage(map);
 	}
 
+	@Override
+	public FoodVO foodDetailData(int no) {
+		return mapper.foodDetailData(no);
+	}
+
 }
