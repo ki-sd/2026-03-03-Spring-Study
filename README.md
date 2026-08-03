@@ -7,7 +7,7 @@
 
 * **Progress** 
 	<p>
-		<img src="https://img.shields.io/badge/Progress-80%25-yellow?style=flat-square" align="absmiddle">
+		<img src="https://img.shields.io/badge/Progress-100%25-success?style=flat-square" align="absmiddle">
 * **Language & Markup** 
 	<p>
 		<img src="https://img.shields.io/badge/Java_11-ED8B00?style=flat-square&logo=openjdk&logoColor=white" align="absmiddle"> 
